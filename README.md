@@ -1,39 +1,39 @@
-instalation process: 
+# INSTALLATION PROCESS 
 
-# UPDATE THE SYSTEM
+## UPDATE THE SYSTEM
 ```
 sudo apt update
 sudo apt upgrade
 ```
 
-# INSTALL BASIC DEPENDENCIES
+## INSTALL BASIC DEPENDENCIES
 ```
 sudo apt install -y curl wget gnupg ufw
 ```
 
-# INSTALL NVIDIA DEPENDENCIES
+## INSTALL NVIDIA DEPENDENCIES
 ```
 sudo apt install nvidia-utils-580
 sudo apt install nvidia-drivers-580
 ```
 
-# SYSTEM REBOOT
+## SYSTEM REBOOT
 ```
 reboot
 ```
 
-# CHECK NVIDIA GPUS
+## CHECK NVIDIA GPUS
 ```
 nvindia-smi
 ```
 
-# DOWNLOAD BITCOIN CORE
+## DOWNLOAD BITCOIN CORE
 ```
 cd /tmp/
 wget https://bitcoincore.org/bin/bitcoin-core-27.0/bitcoin-27.0-x86_64-linux-gnu.tar.gz
 ```
 
-# UNCOMPRESS AND INSTALL BINARIES
+## UNCOMPRESS AND INSTALL BINARIES
 ```
 tar -xvf bitcoin-27.0-x86_64-linux-gnu.tar.gz 
 sudo install -m 0755 bitcoin-27.0/bin/* /usr/local/bin/
@@ -44,11 +44,11 @@ sudo mkdir -p /var/lib/bitcoin
 
 sudo chown bitcoin:bitcoin /var/lib/bitcoin
 
-# CREATE FOLDER FOR STORING BLOCKCHAIN
+## CREATE FOLDER FOR STORING BLOCKCHAIN
 sudo mkdir -p /var/lib/bitcoin/.bitcoin
 sudo chown -R bitcoin /var/lib/bitcoin/.bitcoin
 
-# BITCOIN DAEMON SETTINGS  (EDIT IP ADDRESSES FROM 4 NODES HERE!!) 
+## BITCOIN DAEMON SETTINGS  (EDIT IP ADDRESSES FROM 4 NODES HERE!!) 
 sudo -u bitcoin nano /var/lib/bitcoin/.bitcoin/bitcoin.conf
 
 ```
@@ -122,14 +122,14 @@ sudo systemctl enable ssh
 sudo systemctl start ssh
 
 
-# SET UP FIREWALL RULES
+## SET UP FIREWALL RULES
 udo ufw allow 8333/tcp
 sudo ufw allow 8333/tcp
 sudo ufw allow ssh
 sudo ufw enable 
 sudo ufw status 
 
-# CREATE DAEMON SERVICE DEFINITION (EDIT FILE)
+## CREATE DAEMON SERVICE DEFINITION (EDIT FILE)
 
 sudo nano /etc/systemd/system/bitcoind.service
 
@@ -151,7 +151,7 @@ WantedBy=multi-user.target
 ```
 
 
-# CREATE REGTEST SERVICE TO ALLOW TEST TRANSACTIONS AND MINING
+## CREATE REGTEST SERVICE TO ALLOW TEST TRANSACTIONS AND MINING
 
 sudo nano /etc/systemd/system/bitcoind-regtest.service
 
@@ -246,7 +246,7 @@ WantedBy=multi-user.target
 ```
 
 
-# ENABLE AND START SERVICES
+## ENABLE AND START SERVICES
 
 sudo systemctl daemon-reload 
 sudo systemctl enable bitcoind.service 
@@ -262,11 +262,11 @@ sudo systemctl start traffic.service
 sudo systemctl start transfer.service
 
 
-# CREATE KEY PAIRS FOR EACH NODE
+## CREATE KEY PAIRS FOR EACH NODE
 
 RUN	`ssh-keygen` on each node to generate public and private key pairs inside /home/mining0X/.ssh/
 
-# SHARE KEYS FOR EACH NODE
+## SHARE KEYS FOR EACH NODE
 
 On each node, create /home/{HOST}/.ssh/authorized_keys, containing copies of the .pub key from every other node. 
 
