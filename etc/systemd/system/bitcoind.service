@@ -1,0 +1,16 @@
+[Unit]
+Description=Bitcoin Core Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/bitcoind -datadir=/var/lib/bitcoin/.bitcoin
+User=bitcoin
+Group=bitcoin
+Type=forking
+Restart=always
+TimeoutStopSec=600
+
+[Install]
+WantedBy=multi-user.target
+
+

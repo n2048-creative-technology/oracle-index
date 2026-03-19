@@ -1,0 +1,14 @@
+[Unit]
+Description=Load Bitcoin regtest wallet
+After=bitcoind-regtest.service
+Requires=bitcoind-regtest.service
+
+[Service]
+Type=oneshot
+User=mining01
+Group=mining01
+ExecStart=/home/mining01/load-demo-wallet.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

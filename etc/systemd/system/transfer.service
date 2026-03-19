@@ -1,0 +1,17 @@
+[Unit]
+Description=Bitcoin regtest wallet transfer generator
+After=bitcoin-wallets.service
+Requires=bitcoin-wallets.service
+
+[Service]
+Type=simple
+User=mining01
+Group=mining01
+ExecStart=/home/mining01/transfer.sh
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
